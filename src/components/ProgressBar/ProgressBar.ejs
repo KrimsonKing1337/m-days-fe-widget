@@ -1,0 +1,87 @@
+<div class="ProgressBar js-progress-bar">
+  <div class="Shadow">
+    <%= require('components/Weather/Weather.ejs')() %>
+
+    <div class="ContentWrapper js-content-wrapper with-percent">
+      <div class="Left">
+        <span class="Year js-year">
+
+        </span>
+
+        <span class="Month js-month">
+
+        </span>
+      </div>
+
+      <div class="Center">
+        <div class="Time">
+          <span class="HoursOrMinutes js-hours">
+
+          </span>
+
+          <span class="HoursOrMinutes js-minutes">
+
+          </span>
+
+          <span class="Seconds js-seconds">
+
+          </span>
+
+          <span class="WaterMark">
+            m-days.ru
+          </span>
+        </div>
+
+        <div class="Progress">
+          <div class="ProgressWalking js-progress-walking" style="width: 0"></div>
+        </div>
+
+        <span class="Day">
+          <span class="DayValue js-day-value">
+
+          </span>
+
+          <span class="DayLabel">
+            monochrome days
+          </span>
+        </span>
+      </div>
+
+      <div class="Right">
+        <span class="Percent js-percent">
+
+        </span>
+
+        <span class="PercentFull js-percent-full">
+
+        </span>
+      </div>
+    </div>
+
+    <div class="ContentWrapper js-content-wrapper no-percent">
+      <div class="Time">
+        <span class="HoursOrMinutes js-hours">
+
+        </span>
+
+        <span class="HoursOrMinutes js-minutes">
+
+        </span>
+
+        <span class="Seconds js-seconds">
+
+        </span>
+      </div>
+
+      <div class="Date">
+        <span class="Month js-month">
+
+        </span>
+
+        <span class="WaterMark">
+          m-days.ru
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

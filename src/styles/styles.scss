@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#config-root {
+  height: 100%;
+  width: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+#config-root {
+  overflow: auto;
+}

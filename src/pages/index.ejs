@@ -1,0 +1,150 @@
+<%
+var options = htmlWebpackPlugin.options;
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />-->
+
+  <link href="./fonts/fonts.css" rel="stylesheet" />
+
+  <title>
+    m-days
+  </title>
+</head>
+
+<body>
+
+<noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
+
+<div id="root">
+  <%= require('@components/Bg/Bg.ejs')() %>
+</div>
+
+<script>
+  function setupErrorDisplayEarly() {
+    return;
+
+    var body = document.getElementsByTagName('body')[0];
+
+    var errorEl = document.createElement('div');
+
+    errorEl.id = 'error';
+    errorEl.style.position = 'absolute';
+    errorEl.style.zIndex = '100';
+    errorEl.style.top = '0';
+    errorEl.style.left = '0';
+    errorEl.style.width = '40%';
+    errorEl.style.color = 'red';
+    errorEl.style.fontFamily = 'monospace';
+    errorEl.style.whiteSpace = 'pre-wrap';
+    errorEl.style.marginTop = '10px';
+
+    var logEl = document.createElement('div');
+
+    logEl.id = 'log';
+    logEl.style.position = 'absolute';
+    logEl.style.zIndex = '100';
+    logEl.style.top = '0';
+    logEl.style.right = '0';
+    logEl.style.width = '40%';
+    logEl.style.color = 'yellow';
+    logEl.style.fontFamily = 'monospace';
+    logEl.style.whiteSpace = 'pre-wrap';
+    logEl.style.marginTop = '10px';
+
+    body.appendChild(logEl);
+    body.appendChild(errorEl);
+
+    function appendError(msg) {
+      errorEl.innerText += '[Ошибка] ' + msg + '\\n';
+    }
+
+    function appendLog(msg) {
+      logEl.innerText += '[Лог] ' + msg + '\\n';
+    }
+
+    window.onerror = function (msg, url, line, col, error) {
+      appendError(msg + ' (' + url + ':' + line + ':' + col + ')');
+    }
+
+    var originalConsoleError = console.error;
+    var originalConsoleLog = console.log;
+
+    console.error = function () {
+      appendError(Array.prototype.join.call(arguments, ' '));
+      originalConsoleError.apply(console, arguments);
+    }
+
+    console.log = function () {
+      appendLog(Array.prototype.join.call(arguments, ' '));
+      originalConsoleLog.apply(console, arguments);
+    }
+  }
+
+  setupErrorDisplayEarly();
+
+  // ie <= 8, android <= 4.4.4, ios <= 10.2 does not support object.values
+  if (!Object.values) {
+    Object.values = function(obj) {
+      if (obj === null || obj === undefined) {
+        throw new TypeError('Cannot convert undefined or null to object');
+      }
+
+      var result = [];
+
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          result.push(obj[key]);
+        }
+      }
+
+      return result;
+    };
+  }
+
+  // ie <= 11, android <= 4.4.4, ios <= 8.4 does not support Array.prototype.includes
+  if (!Array.prototype.includes) {
+    Array.prototype.includes = function (searchElement, fromIndex) {
+      if (this == null) {
+        throw new TypeError('"this" is null or not defined');
+      }
+
+      var array = Object(this); // Ensure object wrapping
+      var length = array.length >>> 0; // Cast to UInt32
+
+      if (length === 0) {
+        return false;
+      }
+
+      var startIndex = fromIndex | 0; // Convert to integer
+      var index = Math.max(startIndex >= 0 ? startIndex : length + startIndex, 0);
+
+      while (index < length) {
+        var currentElement = array[index];
+
+        var isNaNCheck = typeof currentElement === 'number'
+          && typeof searchElement === 'number'
+          && isNaN(currentElement)
+          && isNaN(searchElement);
+
+        if (currentElement === searchElement || isNaNCheck) {
+          return true;
+        }
+
+        index++;
+      }
+
+      return false;
+    };
+  }
+</script>
+
+</body>
+</html>

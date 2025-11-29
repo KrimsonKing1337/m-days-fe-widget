@@ -1,0 +1,29 @@
+.Weather {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  text-align: center;
+
+  &.no-gui {
+    display: none;
+  }
+}
+
+.WeatherIcon {
+  display: none; // changed by script
+  height: 64px;
+  width: 64px;
+  margin-right: 10px;
+}
+
+.WeatherTemp {
+  display: block;
+  font-family: "Avenir LT Std 35 Light Oblique";
+  font-size: 38px;
+  color: #fff;
+
+  &.theme-cyberpunk {
+    font-family: 'Digital-Cyrillic';
+  }
+}
