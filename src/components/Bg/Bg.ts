@@ -24,7 +24,7 @@ $(async () => {
   const preset = searchParams.get('preset') || 'default';
 
   let mediaNext = await getRandomMedia(preset);
-  let bgNext = mediaNext.path.replace('D:/Projects/m-days/01. digital/m-days-public-images/', '');
+  let bgNext = mediaNext.path;
 
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
@@ -34,7 +34,7 @@ $(async () => {
     $bg.css('background-image', `url(/${bgNext})`);
 
     mediaNext = await getRandomMedia(preset);
-    bgNext = mediaNext.path.replace('D:/Projects/m-days/01. digital/m-days-public-images/', '');
+    bgNext = mediaNext.path;
 
     $bgNext.css('background-image', `url(/${bgNext})`);
   }
