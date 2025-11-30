@@ -132,14 +132,7 @@ module.exports = (env = {}, argv) => {
       oneOf: [
         {
           resourceQuery: /sprite/,
-          use: [
-            {
-              loader: 'url-loader',
-              options: {
-                esModule: false,
-              },
-            },
-          ],
+          type: 'asset/inline',
         },
         {
           use: ['@svgr/webpack'],
@@ -147,19 +140,13 @@ module.exports = (env = {}, argv) => {
       ],
     },
     {
-      test: /\.(jpeg|jpg|png|docx)$/i,
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            esModule: false,
-            name: '[name].[ext]',
-            outputPath: 'assets/',
-          },
-        },
-      ],
+      test: /\.(jpe?g|png|docx)$/i,
+      type: 'asset/inline',
     },
-    { test: /\.(woff|woff2|eot|ttf|otf)$/, use: ['url-loader?limit=100000'] },
+    {
+      test: /\.(woff2?|eot|ttf|otf)$/i,
+      type: 'asset/inline',
+    },
     {
       test: /\.ejs$/,
       use: [
