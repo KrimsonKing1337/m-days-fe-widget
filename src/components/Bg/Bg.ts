@@ -1,8 +1,9 @@
-import { getRandomMedia } from 'api';
+import { getPresetInfo, getRandomMedia } from 'api';
 
 // import { setSkin } from '../Weather/Weather';
 
 import './Bg.scss';
+import { setSkin } from '../Weather/Weather';
 
 $(async () => {
   const rootElement = document.querySelector('#root');
@@ -17,11 +18,13 @@ $(async () => {
   const $progressBarsWrapper = $('.js-progress-bars-wrapper');
   const $progressBarsDull = $('.js-progress-bars-dull');
 
-  // const $progressBar = $('.js-progress-bar');
+  const $progressBar = $('.js-progress-bar');
   const $progressBarCyberpunk = $('.js-progress-bar-vaporwave');
 
   const searchParams = new URLSearchParams(window.location.search);
   const preset = searchParams.get('preset') || 'default';
+
+  const presetInfo = await getPresetInfo(preset);
 
   let mediaNext = await getRandomMedia(preset);
   let bgNext = mediaNext.path;
@@ -53,14 +56,12 @@ $(async () => {
     }, 700);
   }, 12000);
 
-  /*if (presetInfo.skin === 'cyberpunk') {
+  if (presetInfo.skin === 'cyberpunk') {
     $progressBar.remove();
     setSkin('cyberpunk');
   } else {
     $progressBarCyberpunk.remove();
-  }*/
-
-  $progressBarCyberpunk.remove();
+  }
 
   $progressBarsDull.hide();
   $progressBarsWrapper.show();

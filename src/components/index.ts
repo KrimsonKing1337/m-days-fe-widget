@@ -12,5 +12,3 @@ import './Menu/Menu';
 import './ProgressBar/ProgressBar';
 import './ProgressBarVaporwave/ProgressBarVaporwave';
 import './Weather/Weather';
-
-import './CreateNewPreset/CreateNewPreset';

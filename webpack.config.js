@@ -44,11 +44,6 @@ module.exports = (env = {}, argv) => {
       isMobile: !!mobile,
       isProd,
     }),
-    new HtmlWebpackPlugin({
-      template: './src/pages/config.ejs',
-      scriptLoading: 'blocking',
-      filename: 'config.html',
-    }),
     new CopyWebpackPlugin({
       patterns: [
         {
