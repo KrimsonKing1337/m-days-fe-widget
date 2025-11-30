@@ -1,9 +1,8 @@
 import { getPresetInfo, getRandomMedia } from 'api';
 
-// import { setSkin } from '../Weather/Weather';
+import { setSkin } from '../Weather/Weather';
 
 import './Bg.scss';
-import { setSkin } from '../Weather/Weather';
 
 $(async () => {
   const rootElement = document.querySelector('#root');
