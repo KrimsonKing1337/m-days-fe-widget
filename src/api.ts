@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 
-import { Media, Preset, WeatherResp } from './@types';
+import { Media, WeatherResp } from './@types';
 
 export type getCurrentWeatherParams = {
   latitude: number;
@@ -24,36 +24,6 @@ export async function getCurrentWeather({ protocol, latitude, longitude }: getCu
    от этого запросы швырять либо на http, либо на https
   */
   const result: AxiosResponse<WeatherResp> = await axios.get(`${protocol}://api.open-meteo.com/v1/forecast`, { params });
-
-  return result.data;
-}
-
-export function getContentOptions() {
-  return axios.get('/content-options');
-}
-
-export function putNewPreset(newPreset: Preset) {
-  const params = new URLSearchParams();
-
-  Object.keys(newPreset).forEach((key) => {
-    const value = newPreset[key];
-
-    params.append(key, value);
-  });
-
-  return axios.put('/api', params);
-}
-
-export function deletePreset(id: string) {
-  return axios.delete('/api', {
-    data: { id },
-  });
-}
-
-export async function getInfoAboutPreset(id: string): Promise<Preset> {
-  const result = await axios.get('/api', {
-    params: { id },
-  });
 
   return result.data;
 }

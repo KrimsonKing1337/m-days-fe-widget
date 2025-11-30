@@ -191,7 +191,7 @@ module.exports = (env = {}, argv) => {
   }
 
   const buildDir = path.join(__dirname, 'dist');
-  const imgBgDir = path.join(__dirname, '../m-days-public-images');
+  const imgBgDir = path.join(__dirname, '../m-days-public-images_test');
 
   return {
     entry: ['./src/index.ts'],
