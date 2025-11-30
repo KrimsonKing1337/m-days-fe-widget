@@ -213,11 +213,6 @@ module.exports = (env = {}, argv) => {
           target: 'http://localhost:3000',
           // secure: false,
         },
-        {
-          context: ['/content-options'],
-          target: 'http://localhost:3000',
-          // secure: false,
-        },
       ],
       devMiddleware: {
         writeToDisk: true, // без этого почему-то ошибка: cannot get /
