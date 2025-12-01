@@ -75,7 +75,6 @@ module.exports = (env = {}, argv) => {
         loader: 'ifdef-loader',
         options: {
           standalone: standalone,
-          'ifdef-verbose': true,
         },
       }],
       exclude: (modulePath) => {
