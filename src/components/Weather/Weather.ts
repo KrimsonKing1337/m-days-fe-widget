@@ -3,11 +3,16 @@ import type { WeatherResp } from 'm-days-core/@types';
 
 import { getSrcOfWeatherIcon } from 'm-days-core/utils';
 
-import { getCurrentPosition } from 'utils/gpsApi';
 import { getCurrentWeather } from 'api';
+
+import { getCurrentPosition } from 'utils/gpsApi';
 import { printObject } from 'utils/printObject';
 
+import { setSkin } from './utils';
+
 import './Weather.scss';
+
+window.weatherSkin = 'default';
 
 function catchError(error: AxiosError) {
   if (error.response) {
@@ -29,17 +34,6 @@ function catchError(error: AxiosError) {
 
   console.log('5');
   printObject(error.config);
-}
-
-let skin = 'default';
-
-export function setSkin(theme: string) {
-  const $weather = $('.js-weather');
-  const $weatherTemp = $weather.find('.js-weather-temp');
-
-  skin = theme;
-
-  $weatherTemp.addClass(`theme-${theme}`);
 }
 
 async function updateWeather() {
@@ -92,7 +86,7 @@ async function updateWeather() {
 
   let value = `${signNearTheTemperature} ${temperaturePrepared} °C`;
 
-  if (skin === 'cyberpunk') {
+  if (window.weatherSkin === 'cyberpunk') {
     value = `${signNearTheTemperature}${temperaturePrepared}°C`; // without spaces
   }
 

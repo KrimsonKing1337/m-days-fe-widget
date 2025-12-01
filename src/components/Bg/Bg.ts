@@ -1,6 +1,7 @@
-import { getPresetInfo, getRandomMedia } from 'api';
+import { setSkin as weatherSetSkin } from '../Weather/utils';
 
-import { setSkin as weatherSetSkin } from '../Weather/Weather';
+import { getRandomMediaMiddleware } from './utils/getRandomMediaMiddleware';
+import { getPresetInfoMiddleware } from './utils/getPresetInfoMiddleware';
 
 import './Bg.scss';
 
@@ -9,10 +10,6 @@ $(async () => {
 
   if (!rootElement) {
     return;
-  }
-
-  if (isStandalone) {
-    window.isStandalone = true;
   }
 
   const $bg = $('.js-bg');
@@ -27,9 +24,9 @@ $(async () => {
   const searchParams = new URLSearchParams(window.location.search);
   const preset = searchParams.get('preset') || 'default';
 
-  const presetInfo = await getPresetInfo(preset);
+  const presetInfo = await getPresetInfoMiddleware(preset);
 
-  let mediaNext = await getRandomMedia(preset);
+  let mediaNext = await getRandomMediaMiddleware(preset);
   let bgNext = mediaNext.path;
 
   const changeOpacity = (value: string) => {
@@ -39,7 +36,7 @@ $(async () => {
   const changeImage = async () => {
     $bg.css('background-image', `url(/${bgNext})`);
 
-    mediaNext = await getRandomMedia(preset);
+    mediaNext = await getRandomMediaMiddleware(preset);
     bgNext = mediaNext.path;
 
     $bgNext.css('background-image', `url(/${bgNext})`);

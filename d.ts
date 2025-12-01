@@ -14,4 +14,5 @@ declare const isStandalone: boolean;
 interface Window {
   isStandalone: boolean;
   isSbMode: boolean;
+  weatherSkin: string;
 }

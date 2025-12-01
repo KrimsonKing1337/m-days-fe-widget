@@ -74,7 +74,8 @@ module.exports = (env = {}, argv) => {
       use: ['babel-loader', {
         loader: 'ifdef-loader',
         options: {
-          env: env,
+          standalone: standalone,
+          'ifdef-verbose': true,
         },
       }],
       exclude: (modulePath) => {
