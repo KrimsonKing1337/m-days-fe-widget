@@ -1,6 +1,6 @@
 import { getPresetInfo, getRandomMedia } from 'api';
 
-import { setSkin } from '../Weather/Weather';
+import { setSkin as weatherSetSkin } from '../Weather/Weather';
 
 import './Bg.scss';
 
@@ -9,6 +9,10 @@ $(async () => {
 
   if (!rootElement) {
     return;
+  }
+
+  if (isStandalone) {
+    window.isStandalone = true;
   }
 
   const $bg = $('.js-bg');
@@ -57,7 +61,7 @@ $(async () => {
 
   if (presetInfo.skin === 'cyberpunk') {
     $progressBar.remove();
-    setSkin('cyberpunk');
+    weatherSetSkin('cyberpunk');
   } else {
     $progressBarCyberpunk.remove();
   }

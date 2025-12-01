@@ -124,6 +124,9 @@ module.exports = (env = {}, argv) => {
         },
         {
           loader: 'sass-loader',
+          options: {
+            api: 'modern',
+          }
         }
       ],
     },
@@ -173,7 +176,7 @@ module.exports = (env = {}, argv) => {
   }
 
   const buildDir = path.join(__dirname, 'dist');
-  const imgBgDir = path.join(__dirname, '../m-days-public-images_test');
+  const imgBgDir = path.join(__dirname, '../m-days-public-images');
 
   return {
     entry: ['./src/index.ts'],

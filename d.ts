@@ -10,3 +10,8 @@ declare module '*.svg' {
 
 declare const isSbMode: boolean;
 declare const isStandalone: boolean;
+
+interface Window {
+  isStandalone: boolean;
+  isSbMode: boolean;
+}
