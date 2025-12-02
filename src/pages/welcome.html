@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Monochrome Days Welcome Page
+  </title>
+</head>
+
+<script>
+  const goIfOnline = () => {
+    if (window.navigator.onLine) {
+      document.location.href = 'https://m-days.ru';
+    }
+  }
+
+  goIfOnline();
+
+  setTimeout(() => {
+    const loaderElement = document.querySelector('.lds-ring');
+    const textElement = document.querySelector('.text');
+
+    loaderElement.style = 'display: none';
+    textElement.style = 'display: block';
+
+    setInterval(() => {
+      goIfOnline();
+    }, 500);
+  }, 5000);
+</script>
+
+<style>
+  html,
+  body {
+    width: 100%;
+    height: 100vh;
+    background: #111;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .text {
+    display: none; /* change by script */
+    color: #666;
+    font-size: 48px;
+  }
+
+  .lds-ring {
+    display: inline-block; /* change by script */
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<body>
+  <div class="wrapper">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+    <div class="text">
+      Please, connect the device to wi-fi or check your Internet connection
+    </div>
+  </div>
+</body>
+</html>

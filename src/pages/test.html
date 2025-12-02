@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <style>
+    #div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="div">
+
+  </div>
+
+  <script>
+    const divEl = document.getElementById('div');
+
+    const appVersion = navigator.appVersion;
+
+    divEl.innerText = appVersion;
+  </script>
+</body>
+</html>
