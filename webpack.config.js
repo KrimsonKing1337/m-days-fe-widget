@@ -1,19 +1,27 @@
-const { DefinePlugin } = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
+import webpack from 'webpack';
+
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+import denv from 'dotenv';
+
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const localPublicFolder = path.join(__dirname, 'public');
 const publicFolder = path.join(__dirname, '../m-days-public/');
 const fontsFolder = path.join(__dirname, '../m-days-core/src/assets/fonts/');
 
-const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
+const dotenv = denv.config({ path: __dirname + '/.env' });
 
-module.exports = (env = {}, argv) => {
+export default (env = {}, argv) => {
   const webpackMode = argv.mode;
   const { mobile, sb, standalone } = env;
   const isProd = webpackMode === 'production';
@@ -32,7 +40,7 @@ module.exports = (env = {}, argv) => {
         },
       },
     }),
-    new DefinePlugin({
+    new webpack.DefinePlugin({
       'process.env': JSON.stringify(processEnv),
       'isSbMode': JSON.stringify(sb),
       'isStandalone': JSON.stringify(standalone),
@@ -48,10 +56,6 @@ module.exports = (env = {}, argv) => {
       patterns: [
         {
           from: `${localPublicFolder}/`,
-          to: './',
-        },
-        {
-          from: `${publicFolder}/`,
           to: './',
         },
         {
@@ -117,7 +121,7 @@ module.exports = (env = {}, argv) => {
           options: {
             postcssOptions: {
               plugins: [
-                require('autoprefixer')
+                'autoprefixer'
               ]
             },
           },

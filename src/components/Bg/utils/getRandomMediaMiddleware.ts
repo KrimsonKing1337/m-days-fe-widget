@@ -2,11 +2,11 @@
 import infoJson from 'standalone/info.json';
 /// #endif
 
-import { getRandomMedia } from 'api';
+import { type GetRandomMediaArgs, getRandomMedia } from 'api';
 
 import { getRandomMediaStandalone } from './getRandomMediaStandalone';
 
-export async function getRandomMediaMiddleware(preset: string) {
+export async function getRandomMediaMiddleware({ preset, width }: GetRandomMediaArgs) {
   /// #if standalone
   if (isStandalone) {
     const randomMedia = getRandomMediaStandalone(infoJson);
@@ -17,5 +17,5 @@ export async function getRandomMediaMiddleware(preset: string) {
   }
   /// #endif
 
-  return await getRandomMedia(preset);
+  return await getRandomMedia({ preset, width });
 }

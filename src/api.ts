@@ -28,9 +28,17 @@ export async function getCurrentWeather({ protocol, latitude, longitude }: getCu
   return result.data;
 }
 
-export async function getRandomMedia(preset: string): Promise<Media> {
+export type GetRandomMediaArgs = {
+  preset: string;
+  width: string;
+};
+
+export async function getRandomMedia({ preset, width }: GetRandomMediaArgs): Promise<Media> {
   const result = await axios.get('/api/media', {
-    params: { preset },
+    params: {
+      preset,
+      width,
+    },
   });
 
   return result.data;
