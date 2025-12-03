@@ -23,16 +23,27 @@ export enum Themes {
   'cyberpunk' = 'cyberpunk',
 }
 
-export type Preset = {
-  [key: string]: string;
+type PresetValuesType = {
+  collection: string;
+  topic: string;
+};
 
+type PresetOptionsType = {
+  width: number[];
+  height: number[];
+};
+
+export type Preset = {
   id: string;
-  staticTopics: string;
-  dynamicTopics: string;
-  resolution: string;
-  skin: string;
-  formats: string;
-  fileSize: string;
+  values: {
+    dynamic: PresetValuesType[];
+    static: PresetValuesType[];
+  };
+  options?: {
+    skin: string;
+    dynamic: PresetOptionsType;
+    static: PresetOptionsType;
+  }
 };
 
 export type Media = {

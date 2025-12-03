@@ -6,7 +6,7 @@ import { type GetRandomMediaArgs, getRandomMedia } from 'api';
 
 import { getRandomMediaStandalone } from './getRandomMediaStandalone';
 
-export async function getRandomMediaMiddleware({ preset, width }: GetRandomMediaArgs) {
+export async function getRandomMediaMiddleware(params: GetRandomMediaArgs) {
   /// #if standalone
   if (isStandalone) {
     const randomMedia = getRandomMediaStandalone(infoJson);
@@ -17,5 +17,5 @@ export async function getRandomMediaMiddleware({ preset, width }: GetRandomMedia
   }
   /// #endif
 
-  return await getRandomMedia({ preset, width });
+  return await getRandomMedia(params);
 }

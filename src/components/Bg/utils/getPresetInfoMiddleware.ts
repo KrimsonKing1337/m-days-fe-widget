@@ -3,7 +3,9 @@ import { getPresetInfo } from 'api';
 export async function getPresetInfoMiddleware(preset: string) {
   if (isStandalone) {
     return {
-      skin: 'default',
+      options: {
+        skin: 'default',
+      }
     };
   }
 

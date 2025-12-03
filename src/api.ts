@@ -30,15 +30,15 @@ export async function getCurrentWeather({ protocol, latitude, longitude }: getCu
 
 export type GetRandomMediaArgs = {
   preset: string;
-  width: string;
+  width: string | null;
+  height: string | null;
+  windowWidth: string | null;
+  windowHeight: string | null;
 };
 
-export async function getRandomMedia({ preset, width }: GetRandomMediaArgs): Promise<Media> {
+export async function getRandomMedia(params: GetRandomMediaArgs): Promise<Media> {
   const result = await axios.get('/api/media', {
-    params: {
-      preset,
-      width,
-    },
+    params,
   });
 
   return result.data;

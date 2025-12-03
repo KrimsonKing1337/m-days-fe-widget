@@ -23,11 +23,23 @@ $(async () => {
 
   const searchParams = new URLSearchParams(window.location.search);
   const preset = searchParams.get('preset') || 'default';
-  const width = searchParams.get('width') || '1920';
+  const width = searchParams.get('width');
+  const height = searchParams.get('height');
+
+  const windowWidth = window.outerWidth.toString();
+  const windowHeight = window.innerHeight.toString();
 
   const presetInfo = await getPresetInfoMiddleware(preset);
 
-  let mediaNext = await getRandomMediaMiddleware({ preset, width });
+  const params = {
+    preset,
+    width,
+    height,
+    windowWidth,
+    windowHeight,
+  };
+
+  let mediaNext = await getRandomMediaMiddleware(params);
   let bgNext = mediaNext.path;
 
   const changeOpacity = (value: string) => {
@@ -37,7 +49,7 @@ $(async () => {
   const changeImage = async () => {
     $bg.css('background-image', `url(/${bgNext})`);
 
-    mediaNext = await getRandomMediaMiddleware({ preset, width });
+    mediaNext = await getRandomMediaMiddleware(params);
     bgNext = mediaNext.path;
 
     $bgNext.css('background-image', `url(/${bgNext})`);
@@ -57,7 +69,7 @@ $(async () => {
     }, 700);
   }, 12000);
 
-  if (presetInfo.skin === 'cyberpunk') {
+  if (presetInfo.options?.skin === 'cyberpunk') {
     $progressBar.remove();
     weatherSetSkin('cyberpunk');
   } else {
