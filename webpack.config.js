@@ -1,7 +1,6 @@
 import webpack from 'webpack';
 
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
@@ -31,7 +30,6 @@ export default (env = {}, argv) => {
     new MiniCssExtractPlugin({
       filename: '[name]_[contenthash].css',
     }),
-    new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
         diagnosticOptions: {
@@ -216,6 +214,7 @@ export default (env = {}, argv) => {
       publicPath: './',
       path: buildDir,
       filename: '[name]_[contenthash].js',
+      clean: true,
     },
     target: !isProd ? 'web' : ['web', 'es5'],
     resolve: {
