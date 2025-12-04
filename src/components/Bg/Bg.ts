@@ -22,6 +22,7 @@ $(async () => {
   const $progressBarCyberpunk = $('.js-progress-bar-vaporwave');
 
   const searchParams = new URLSearchParams(window.location.search);
+
   const preset = searchParams.get('preset') || 'default';
   const width = searchParams.get('width');
   const height = searchParams.get('height');

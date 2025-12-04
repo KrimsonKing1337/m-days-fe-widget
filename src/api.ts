@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from 'axios';
 
-import { Media, Preset, WeatherResp } from './@types';
+import { Media, MediaSync, Preset, WeatherResp } from './@types';
 
 export type getCurrentWeatherParams = {
   latitude: number;
@@ -47,6 +47,14 @@ export async function getRandomMedia(params: GetRandomMediaArgs): Promise<Media>
 export async function getPresetInfo(preset: string): Promise<Preset> {
   const result = await axios.get('/api/preset', {
     params: { preset },
+  });
+
+  return result.data;
+}
+
+export async function getRandomMediaSync(params: GetRandomMediaArgs): Promise<MediaSync> {
+  const result = await axios.get('/api/media-sync', {
+    params,
   });
 
   return result.data;

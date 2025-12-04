@@ -58,3 +58,13 @@ export type Media = {
   path: string;
   size: number;
 };
+
+export type MediaSync = {
+  path: string;
+  nextPath: string;
+  id: string;
+  nextId: string;
+  intervalMs: number;
+  serverTime: number;
+  nextChangeAt: number;
+};
