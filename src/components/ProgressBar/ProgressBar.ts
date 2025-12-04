@@ -1,7 +1,5 @@
 import { twoDigitsAlways, getValuesForProgressBar } from 'm-days-core/utils';
 
-import { Themes } from '@types';
-
 import './ProgressBar.scss';
 
 $(() => {
@@ -11,15 +9,7 @@ $(() => {
     return;
   }
 
-  const theme = new URLSearchParams(window.location.search).get('theme');
-
   const $parent = $('.js-progress-bar');
-
-  if (theme && theme !== Themes.default) {
-    $parent.remove();
-
-    return;
-  }
 
   const $year = $parent.find('.js-year');
   const $month = $parent.find('.js-month');
@@ -74,12 +64,13 @@ $(() => {
     } = values;
 
     const monthToPrint = twoDigitsAlways(month);
+    const dayToPrint = twoDigitsAlways(day);
     const hoursToPrint = twoDigitsAlways(hours);
     const minutesToPrint = twoDigitsAlways(minutes);
     const secondsToPrint = twoDigitsAlways(seconds);
 
     $year.text(year);
-    $month.text(`${day}.${monthToPrint} ${nameOfDay}`);
+    $month.text(`${dayToPrint}.${monthToPrint} ${nameOfDay}`);
     $hours.text(`${hoursToPrint}:`);
     $minutes.text(minutesToPrint);
     $seconds.text(secondsToPrint);

@@ -25,6 +25,7 @@ $(async () => {
   const preset = searchParams.get('preset') || 'default';
   const width = searchParams.get('width');
   const height = searchParams.get('height');
+  const theme = searchParams.get('theme');
 
   const windowWidth = window.outerWidth.toString();
   const windowHeight = window.innerHeight.toString();
@@ -69,7 +70,7 @@ $(async () => {
     }, 700);
   }, 12000);
 
-  if (presetInfo.options?.skin === 'cyberpunk') {
+  if (presetInfo.options?.skin === 'cyberpunk' || theme === 'cyberpunk') {
     $progressBar.remove();
     weatherSetSkin('cyberpunk');
   } else {
