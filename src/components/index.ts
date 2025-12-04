@@ -1,4 +1,4 @@
-import './Bg/BgSync';
+import './Bg/Bg';
 import './Menu/Menu';
 // todo: пересекаются css классы и css классы для js.
 //  использовать либо БЭМ, либо css модули как-то прикрутить

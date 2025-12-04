@@ -4,6 +4,7 @@ import { getRandomMediaMiddleware } from './utils/getRandomMediaMiddleware';
 import { getPresetInfoMiddleware } from './utils/getPresetInfoMiddleware';
 
 import './Bg.scss';
+import { GetRandomMediaArgs, getRandomMediaSync } from '../../api';
 
 $(async () => {
   const rootElement = document.querySelector('#root');
@@ -23,6 +24,8 @@ $(async () => {
 
   const searchParams = new URLSearchParams(window.location.search);
 
+  const sync = searchParams.get('sync');
+
   const preset = searchParams.get('preset') || 'default';
   const width = searchParams.get('width');
   const height = searchParams.get('height');
@@ -41,40 +44,128 @@ $(async () => {
     windowHeight,
   };
 
-  let mediaNext = await getRandomMediaMiddleware(params);
-  let bgNext = mediaNext.path;
-
   const changeOpacity = (value: string) => {
     $animWrapper.css('opacity', value);
   }
 
-  const changeImage = async () => {
-    $bg.css('background-image', `url(/${bgNext})`);
+  const bgAsyncInit = async () => {
+    let mediaNext = await getRandomMediaMiddleware(params);
+    let bgNext = mediaNext.path;
 
-    mediaNext = await getRandomMediaMiddleware(params);
-    bgNext = mediaNext.path;
+    const changeImage = async () => {
+      $bg.css('background-image', `url(/${bgNext})`);
 
-    $bgNext.css('background-image', `url(/${bgNext})`);
+      mediaNext = await getRandomMediaMiddleware(params);
+      bgNext = mediaNext.path;
+
+      $bgNext.css('background-image', `url(/${bgNext})`);
+    }
+
+    const loop = () => {
+      setTimeout(() => {
+        changeOpacity('0');
+
+        setTimeout(() => {
+          changeImage();
+        }, 300); // transition duration
+
+        setTimeout(() => {
+          changeOpacity('1');
+        }, 700);
+
+        loop();
+      }, 12000);
+    }
+
+    changeImage();
+    loop();
   }
 
-  const loop = () => {
-    setTimeout(() => {
-      changeOpacity('0');
+  const bgSyncInit = () => {
+    let currentPath = '';
+    let nextPath = '';
+
+    async function scheduleNextCycle(params: GetRandomMediaArgs) {
+      const media = await getRandomMediaSync(params);
+
+      // nextPath приходит заранее
+      nextPath = media.nextPath;
+
+      const nowClient = Date.now();
+      const drift = nowClient - media.serverTime;
+      const nextChangeClient = media.nextChangeAt + drift;
+
+      const changeDuration = 300;
+      const fadeTotal = 700;
+
+      const startFadeAt = nextChangeClient - changeDuration;
+      const delay = startFadeAt - nowClient;
 
       setTimeout(() => {
-        changeImage();
-      }, 300); // transition duration
+        changeOpacity('0');
+
+        setTimeout(() => {
+          // ⬇ Момент смены
+          currentPath = nextPath;
+          $bg.css('background-image', `url(/${currentPath})`);
+
+          // ⬇ Подгружаем следующий кадр
+          nextPath = media.nextPath;
+          $bgNext.css('background-image', `url(/${nextPath})`);
+        }, changeDuration);
+
+        setTimeout(() => {
+          changeOpacity('1');
+          scheduleNextCycle(params);
+        }, fadeTotal);
+
+      }, Math.max(0, delay));
+    }
+
+    async function initSlider(params: GetRandomMediaArgs) {
+      const media = await getRandomMediaSync(params);
+
+      currentPath = media.path;
+      nextPath = media.nextPath;
+
+      // ⬇ Показываем текущий кадр
+      $bg.css('background-image', `url(/${currentPath})`);
+
+      // ⬇ Загружаем следующий заранее
+      $bgNext.css('background-image', `url(/${nextPath})`);
+
+      const nowClient = Date.now();
+      const drift = nowClient - media.serverTime;
+      const nextChangeClient = media.nextChangeAt + drift;
+
+      const changeDuration = 300;
+      const startFadeAt = nextChangeClient - changeDuration;
+      const delay = startFadeAt - nowClient;
 
       setTimeout(() => {
-        changeOpacity('1');
-      }, 700);
+        changeOpacity('0');
 
-      loop();
-    }, 12000);
+        setTimeout(() => {
+          // смена первого кадра сразу
+          currentPath = nextPath;
+          $bg.css('background-image', `url(/${currentPath})`);
+        }, changeDuration);
+
+        setTimeout(() => {
+          changeOpacity('1');
+          scheduleNextCycle(params);
+        }, 700);
+      }, Math.max(0, delay));
+    }
+
+    initSlider(params);
   }
 
-  changeImage();
-  loop();
+  if (sync) {
+    bgSyncInit();
+  } else {
+    bgAsyncInit();
+  }
 
   if (presetInfo.options?.skin === 'cyberpunk' || theme === 'cyberpunk') {
     $progressBar.remove();
