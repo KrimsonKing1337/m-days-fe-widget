@@ -56,19 +56,24 @@ $(async () => {
     $bgNext.css('background-image', `url(/${bgNext})`);
   }
 
+  const loop = () => {
+    setTimeout(() => {
+      changeOpacity('0');
+
+      setTimeout(() => {
+        changeImage();
+      }, 300); // transition duration
+
+      setTimeout(() => {
+        changeOpacity('1');
+      }, 700);
+
+      loop();
+    }, 12000);
+  }
+
   changeImage();
-
-  setInterval(() => {
-    changeOpacity('0');
-
-    setTimeout(() => {
-      changeImage();
-    }, 300); // transition duration
-
-    setTimeout(() => {
-      changeOpacity('1');
-    }, 700);
-  }, 12000);
+  loop();
 
   if (presetInfo.options?.skin === 'cyberpunk' || theme === 'cyberpunk') {
     $progressBar.remove();
