@@ -37,6 +37,7 @@ $(async () => {
   const presetInfo = await getPresetInfoMiddleware(preset);
 
   const params = {
+    sync,
     preset,
     width,
     height,
