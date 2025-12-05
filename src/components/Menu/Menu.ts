@@ -136,7 +136,7 @@ $(() => {
     let params = '?';
 
     if (noPercentValue) {
-      params += '&no-percent';
+      params += '&no-m-days';
     }
 
     if (noGuiValue) {
