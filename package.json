@@ -1,5 +1,5 @@
 {
-  "name": "m-days-jquery",
+  "name": "m-days-fe-widget",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -18,14 +18,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KrimsonKing1337/m-days-jquery.git"
+    "url": "git+https://github.com/KrimsonKing1337/m-days-fe-widget.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KrimsonKing1337/m-days-jquery/issues"
+    "url": "https://github.com/KrimsonKing1337/m-days-fe-widget/issues"
   },
-  "homepage": "https://github.com/KrimsonKing1337/m-days-jquery#readme",
+  "homepage": "https://github.com/KrimsonKing1337/m-days-fe-widget#readme",
   "dependencies": {
     "axios": "^0.21.2",
     "bluebird": "^3.7.2",
