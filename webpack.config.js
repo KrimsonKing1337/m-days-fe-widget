@@ -128,6 +128,9 @@ export default (env = {}, argv) => {
           loader: 'sass-loader',
           options: {
             api: 'modern',
+            sassOptions: {
+              loadPaths: [path.resolve(__dirname, 'src')],
+            },
           }
         }
       ],

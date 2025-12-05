@@ -1,0 +1,25 @@
+@mixin gui($className) {
+  .mode-allInvisible &,
+  .mode-single & {
+    display: none;
+  }
+
+  .mode-allVisible.gui-#{$className} & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-#{$className} & {
+    display: block;
+  }
+
+  .mode-single.gui-#{$className} & {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: block;
+  }
+}

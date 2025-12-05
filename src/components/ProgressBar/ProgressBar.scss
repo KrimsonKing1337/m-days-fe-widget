@@ -1,3 +1,5 @@
+@use 'styles/__mixins' as mixins;
+
 .ProgressBar {
   user-select: none;
 
@@ -86,17 +88,7 @@
     font-size: 30px;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-year & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-year & {
-    display: block;
-  }
+  @include mixins.gui(year);
 }
 
 .Month {
@@ -117,17 +109,7 @@
     background: none;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-month & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-month & {
-    display: block;
-  }
+  @include mixins.gui(month);
 }
 
 .Day {
@@ -141,17 +123,7 @@
     font-size: 24px;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-days & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-days & {
-    display: block;
-  }
+  @include mixins.gui(days);
 }
 
 .DayLabel {
@@ -165,17 +137,7 @@
   display: block;
   text-align: center;
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-time & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-time & {
-    display: block;
-  }
+  @include mixins.gui(time);
 }
 
 .Hours,
@@ -191,45 +153,15 @@
 }
 
 .Hours {
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-hours & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-hours & {
-    display: block;
-  }
+  @include mixins.gui(hours);
 }
 
 .Minutes {
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-minutes & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-minutes & {
-    display: block;
-  }
+  @include mixins.gui(minutes);
 }
 
 .TimeDots {
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-time-dots & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-time-dots & {
-    display: block;
-  }
+  @include mixins.gui(time-dots);
 }
 
 .Seconds {
@@ -244,17 +176,7 @@
     font-size: 36px;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-seconds & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-seconds & {
-    display: block;
-  }
+  @include mixins.gui(seconds);
 }
 
 .WaterMark {
@@ -277,17 +199,7 @@
   height: 30px;
   background: #3d3d3d;
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-progress-bar & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-progress-bar & {
-    display: block;
-  }
+  @include mixins.gui(progress-bar);
 }
 
 .ProgressWalking {
@@ -306,17 +218,7 @@
     font-size: 30px;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-percent & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-percent & {
-    display: block;
-  }
+  @include mixins.gui(percent);
 }
 
 .PercentFull {
@@ -333,17 +235,7 @@
     font-size: 24px;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-percent-full & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-percent-full & {
-    display: block;
-  }
+  @include mixins.gui(percent-full);
 }
 
 .Date {

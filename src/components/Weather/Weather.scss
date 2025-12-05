@@ -1,3 +1,5 @@
+@use 'styles/__mixins' as mixins;
+
 .Weather {
   position: absolute;
   top: 50px;
@@ -9,17 +11,7 @@
     display: none;
   }
 
-  .mode-allInvisible & {
-    display: none;
-  }
-
-  .mode-allVisible.gui-weather & {
-    display: none;
-  }
-
-  .mode-allInvisible.gui-weather & {
-    display: block;
-  }
+  @include mixins.gui(weather);
 }
 
 .WeatherIcon {

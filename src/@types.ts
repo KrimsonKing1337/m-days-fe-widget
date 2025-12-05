@@ -34,7 +34,7 @@ type PresetOptionsType = {
 };
 
 export type PresetOptionsGui = Partial<{
-  mode: 'allVisible' | 'allInvisible'
+  mode: 'allVisible' | 'allInvisible' | 'single';
   noGui: boolean;
   noMDays: boolean;
   weather: boolean;
