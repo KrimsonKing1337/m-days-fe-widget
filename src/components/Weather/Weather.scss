@@ -8,6 +8,18 @@
   &.no-gui {
     display: none;
   }
+
+  .mode-allInvisible & {
+    display: none;
+  }
+
+  .mode-allVisible.gui-weather & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-weather & {
+    display: block;
+  }
 }
 
 .WeatherIcon {

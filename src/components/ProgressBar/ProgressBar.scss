@@ -88,14 +88,14 @@
 
   .mode-allInvisible & {
     display: none;
-
-    &.gui-year {
-      display: block;
-    }
   }
 
-  .gui-year.mode-allVisible & {
+  .mode-allVisible.gui-year & {
     display: none;
+  }
+
+  .mode-allInvisible.gui-year & {
+    display: block;
   }
 }
 
@@ -117,8 +117,16 @@
     background: none;
   }
 
-  .no-date & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-month & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-month & {
+    display: block;
   }
 }
 
@@ -133,8 +141,16 @@
     font-size: 24px;
   }
 
-  .no-days {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-days & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-days & {
+    display: block;
   }
 }
 
@@ -149,8 +165,16 @@
   display: block;
   text-align: center;
 
-  .no-time {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-time & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-time & {
+    display: block;
   }
 }
 
@@ -167,20 +191,44 @@
 }
 
 .Hours {
-  .no-hours & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-hours & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-hours & {
+    display: block;
   }
 }
 
 .Minutes {
-  .no-minutes & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-minutes & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-minutes & {
+    display: block;
   }
 }
 
 .TimeDots {
-  .no-time-dots & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-time-dots & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-time-dots & {
+    display: block;
   }
 }
 
@@ -196,8 +244,16 @@
     font-size: 36px;
   }
 
-  .no-seconds & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-seconds & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-seconds & {
+    display: block;
   }
 }
 
@@ -221,8 +277,16 @@
   height: 30px;
   background: #3d3d3d;
 
-  .no-progress-bar & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-progress-bar & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-progress-bar & {
+    display: block;
   }
 }
 
@@ -242,8 +306,16 @@
     font-size: 30px;
   }
 
-  .no-percent & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-percent & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-percent & {
+    display: block;
   }
 }
 
@@ -261,8 +333,16 @@
     font-size: 24px;
   }
 
-  .no-percent-full & {
+  .mode-allInvisible & {
     display: none;
+  }
+
+  .mode-allVisible.gui-percent-full & {
+    display: none;
+  }
+
+  .mode-allInvisible.gui-percent-full & {
+    display: block;
   }
 }
 
