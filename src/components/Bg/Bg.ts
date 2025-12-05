@@ -60,12 +60,12 @@ $(async () => {
     let bgNext = mediaNext.path;
 
     const changeImage = async () => {
-      $bg.css('background-image', `url(/${bgNext})`);
+      $bg.css('background-image', `url(${bgNext})`);
 
       mediaNext = await getRandomMediaMiddleware(params);
       bgNext = mediaNext.path;
 
-      $bgNext.css('background-image', `url(/${bgNext})`);
+      $bgNext.css('background-image', `url(${bgNext})`);
     }
 
     const loop = () => {
