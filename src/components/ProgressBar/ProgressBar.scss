@@ -133,7 +133,6 @@
 }
 
 .Time {
-  position: relative;
   display: block;
   text-align: center;
 
@@ -180,11 +179,12 @@
 }
 
 .WaterMark {
+  display: none; // мне кажется, что вообще не нужно
   position: absolute;
   z-index: 2;
   bottom: 3px;
   right: 7px;
-  display: block;
+  // display: block;
 
   .no-m-days & {
     width: 70%;
