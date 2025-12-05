@@ -2,13 +2,20 @@ import { PresetOptionsGui } from '@types';
 
 export function setGuiSettings(guiSettings: PresetOptionsGui) {
   const {
+    mode,
     noGui,
     noMDays,
     weather,
     year,
     date,
+    time,
+    hours,
+    minutes,
+    seconds,
+    timeDots,
     progressBar,
     days,
+    daysLabel,
     percent,
     percentFull,
     watermark,
@@ -27,6 +34,8 @@ export function setGuiSettings(guiSettings: PresetOptionsGui) {
   const $contentWrapperNoPercent = $progressBar.find('.js-content-wrapper.no-percent');
 
   const $weather = $('.js-weather');
+
+  $body.addClass(`mode-${mode}`);
 
   const applyNoMDays = () => {
     $body.addClass('no-m-days');
@@ -50,19 +59,24 @@ export function setGuiSettings(guiSettings: PresetOptionsGui) {
     applyNoGui();
   }
 
-  if (weather === false) {
-    $body.addClass('no-weather');
+  if (weather !== undefined) {
+    $body.addClass('gui-weather');
     $weather.remove();
   }
 
-  if (year === false) $body.addClass('no-year');
-  if (date === false) $body.addClass('no-date');
-  if (progressBar === false) $body.addClass('no-progress-bar');
-  if (days === false) $body.addClass('no-days');
-  if (percent === false) $body.addClass('no-percent');
-  if (percentFull === false) $body.addClass('no-percent-full');
-  if (weather === false) $body.addClass('no-weather');
-  if (watermark === false) $body.addClass('no-watermark');
+  if (year !== undefined) $body.addClass('gui-year');
+  if (date !== undefined) $body.addClass('gui-date');
+  if (time !== undefined) $body.addClass('gui-time');
+  if (hours !== undefined) $body.addClass('gui-hours');
+  if (minutes !== undefined) $body.addClass('gui-minutes');
+  if (seconds !== undefined) $body.addClass('gui-seconds');
+  if (timeDots !== undefined) $body.addClass('gui-time-dots');
+  if (progressBar !== undefined) $body.addClass('gui-progress-bar');
+  if (days !== undefined) $body.addClass('gui-days');
+  if (daysLabel !== undefined) $body.addClass('gui-days-label');
+  if (percent !== undefined) $body.addClass('gui-percent');
+  if (percentFull !== undefined) $body.addClass('gui-percent-full');
+  if (watermark !== undefined) $body.addClass('gui-watermark');
 
   if (noMDaysValue) {
     applyNoMDays();

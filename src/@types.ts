@@ -34,6 +34,7 @@ type PresetOptionsType = {
 };
 
 export type PresetOptionsGui = Partial<{
+  mode: 'allVisible' | 'allInvisible'
   noGui: boolean;
   noMDays: boolean;
   weather: boolean;
@@ -41,6 +42,12 @@ export type PresetOptionsGui = Partial<{
   date: boolean;
   progressBar: boolean;
   days: boolean;
+  daysLabel: boolean;
+  time: boolean;
+  hours: boolean;
+  minutes: boolean;
+  seconds: boolean;
+  timeDots: boolean;
   percent: boolean;
   percentFull: boolean;
   watermark: boolean;

@@ -85,6 +85,18 @@
   @include SmallScreen {
     font-size: 30px;
   }
+
+  .mode-allInvisible & {
+    display: none;
+
+    &.gui-year {
+      display: block;
+    }
+  }
+
+  .gui-year.mode-allVisible & {
+    display: none;
+  }
 }
 
 .Month {
@@ -104,6 +116,10 @@
   .no-m-days & {
     background: none;
   }
+
+  .no-date & {
+    display: none;
+  }
 }
 
 .Day {
@@ -115,6 +131,10 @@
 
   @include SmallScreen {
     font-size: 24px;
+  }
+
+  .no-days {
+    display: none;
   }
 }
 
@@ -128,15 +148,39 @@
   position: relative;
   display: block;
   text-align: center;
+
+  .no-time {
+    display: none;
+  }
 }
 
-.HoursOrMinutes {
+.Hours,
+.Minutes,
+.TimeDots {
   font-family: 'Avenir LT Std 95 Black Oblique';
   font-size: 98px;
   color: #fff;
 
   @include SmallScreen {
     font-size: 50px;
+  }
+}
+
+.Hours {
+  .no-hours & {
+    display: none;
+  }
+}
+
+.Minutes {
+  .no-minutes & {
+    display: none;
+  }
+}
+
+.TimeDots {
+  .no-time-dots & {
+    display: none;
   }
 }
 
@@ -150,6 +194,10 @@
 
   @include SmallScreen {
     font-size: 36px;
+  }
+
+  .no-seconds & {
+    display: none;
   }
 }
 
@@ -172,6 +220,10 @@
   width: 100%;
   height: 30px;
   background: #3d3d3d;
+
+  .no-progress-bar & {
+    display: none;
+  }
 }
 
 .ProgressWalking {
@@ -189,6 +241,10 @@
   @include SmallScreen {
     font-size: 30px;
   }
+
+  .no-percent & {
+    display: none;
+  }
 }
 
 .PercentFull {
@@ -203,6 +259,10 @@
 
   @include SmallScreen {
     font-size: 24px;
+  }
+
+  .no-percent-full & {
+    display: none;
   }
 }
 

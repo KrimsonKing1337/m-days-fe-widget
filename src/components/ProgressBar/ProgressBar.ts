@@ -49,7 +49,7 @@ $(() => {
 
     $year.text(year);
     $month.text(`${dayToPrint}.${monthToPrint} ${nameOfDay}`);
-    $hours.text(`${hoursToPrint}:`);
+    $hours.text(hoursToPrint);
     $minutes.text(minutesToPrint);
     $seconds.text(secondsToPrint);
     $day.text(`${dayOfYear} of ${daysInYear}`);
