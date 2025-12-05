@@ -38,6 +38,11 @@ function catchError(error: AxiosError) {
 
 async function updateWeather() {
   const $weather = $('.js-weather');
+
+  if ($weather.length === 0) {
+    return;
+  }
+
   const $weatherIcon = $weather.find('.js-weather-icon');
   const $weatherTemp = $weather.find('.js-weather-temp');
 

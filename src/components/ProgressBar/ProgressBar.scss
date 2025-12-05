@@ -11,7 +11,7 @@
   height: 100%;
   width: 100%;
 
-  &.no-gui {
+  .no-gui & {
     display: none;
   }
 }
@@ -44,8 +44,8 @@
   color: #fff;
   opacity: 0.65;
 
-  &.no-percent,
-  &.no-gui {
+  .no-m-days &,
+  .no-gui & {
     display: none;
   }
 }
@@ -101,7 +101,7 @@
     font-size: 24px;
   }
 
-  .no-percent & {
+  .no-m-days & {
     background: none;
   }
 }
@@ -160,7 +160,7 @@
   right: 7px;
   display: block;
 
-  .no-percent & {
+  .no-m-days & {
     width: 70%;
     left: 30%;
     right: auto;

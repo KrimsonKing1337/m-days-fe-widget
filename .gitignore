@@ -44,3 +44,5 @@ lib
 build
 img_bg
 standalone
+
+src/standalone.config.ts

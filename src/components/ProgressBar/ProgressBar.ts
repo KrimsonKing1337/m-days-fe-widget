@@ -21,30 +21,8 @@ $(() => {
   const $percent = $parent.find('.js-percent');
   const $percentFull = $parent.find('.js-percent-full');
 
-  const $contentWrapperWithPercent = $parent.find('.js-content-wrapper.with-percent');
-  const $contentWrapperNoPercent = $parent.find('.js-content-wrapper.no-percent');
-
-  const noPercentParam = new URLSearchParams(window.location.search).get('no-percent');
-  const noPercentValue = noPercentParam !== null;
-
   const percentUpdateSpeed = new URLSearchParams(window.location.search).get('percent-update-speed') || '100';
   const percentUpdateSpeedValue = JSON.parse(percentUpdateSpeed);
-
-  const noGuiParam = new URLSearchParams(window.location.search).get('no-gui');
-  const noGuiValue = noGuiParam !== null;
-
-  if (noPercentValue) {
-    $parent.addClass('no-percent');
-
-    $contentWrapperWithPercent.hide();
-    $contentWrapperNoPercent.show();
-  }
-
-  if (noGuiValue) {
-    $parent.addClass('no-gui');
-
-    $contentWrapperWithPercent.hide();
-  }
 
   const updateValues = () => {
     const values = getValuesForProgressBar();

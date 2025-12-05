@@ -33,6 +33,19 @@ type PresetOptionsType = {
   height: number[];
 };
 
+export type PresetOptionsGui = Partial<{
+  noGui: boolean;
+  noMDays: boolean;
+  weather: boolean;
+  year: boolean;
+  date: boolean;
+  progressBar: boolean;
+  days: boolean;
+  percent: boolean;
+  percentFull: boolean;
+  watermark: boolean;
+}>;
+
 export type Preset = {
   id: string;
   values: {
@@ -40,9 +53,10 @@ export type Preset = {
     static: PresetValuesType[];
   };
   options?: {
-    skin: string;
-    dynamic: PresetOptionsType;
-    static: PresetOptionsType;
+    gui?: PresetOptionsGui;
+    skin?: string;
+    dynamic?: PresetOptionsType;
+    static?: PresetOptionsType;
   }
 };
 

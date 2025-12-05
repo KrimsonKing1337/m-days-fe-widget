@@ -2,9 +2,11 @@ import { setSkin as weatherSetSkin } from '../Weather/utils';
 
 import { getRandomMediaMiddleware } from './utils/getRandomMediaMiddleware';
 import { getPresetInfoMiddleware } from './utils/getPresetInfoMiddleware';
+import { setGuiSettings } from './utils/setGuiSettings';
+
+import { type GetRandomMediaArgs, getRandomMediaSync } from 'api';
 
 import './Bg.scss';
-import { GetRandomMediaArgs, getRandomMediaSync } from '../../api';
 
 $(async () => {
   const rootElement = document.querySelector('#root');
@@ -35,6 +37,10 @@ $(async () => {
   const windowHeight = window.innerHeight.toString();
 
   const presetInfo = await getPresetInfoMiddleware(preset);
+
+  if (presetInfo.options && presetInfo.options.gui) {
+    setGuiSettings(presetInfo.options.gui);
+  }
 
   const params = {
     sync,
