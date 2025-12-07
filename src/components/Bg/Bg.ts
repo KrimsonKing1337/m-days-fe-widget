@@ -33,8 +33,13 @@ $(async () => {
   const height = searchParams.get('height');
   const theme = searchParams.get('theme');
 
-  const windowWidth = window.outerWidth.toString();
-  const windowHeight = window.innerHeight.toString();
+  const dpr = window.devicePixelRatio || 1;
+
+  const windowWidthDpr = Math.floor(window.outerWidth * dpr);
+  const windowHeightDpr = Math.floor(window.innerHeight * dpr);
+
+  const windowWidth = windowWidthDpr.toString();
+  const windowHeight = windowHeightDpr.toString();
 
   const presetInfo = await getPresetInfoMiddleware(preset);
 
