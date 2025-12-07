@@ -33,7 +33,7 @@ $(async () => {
   const height = searchParams.get('height');
   const theme = searchParams.get('theme');
 
-  const dpr = window.devicePixelRatio || 1;
+  const dpr = Math.min((window.devicePixelRatio || 1), 2);
 
   const windowWidthDpr = Math.floor(window.outerWidth * dpr);
   const windowHeightDpr = Math.floor(window.innerHeight * dpr);
